@@ -1,0 +1,52 @@
+
+<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
+    <md-toolbar class="md-accent md-hue-1">
+        <div class="md-toolbar-tools" layout-row>
+            <h1 flex>Parametros</h1>
+            <md-button
+                    ng-click="sidenavright.close()"
+                    class="md-primary md-raised"
+                    hide-gt-md>
+                Cerrar
+            </md-button>
+        </div>
+    </md-toolbar>
+    <md-content>
+        <div layout="column">
+            <div ng-repeat="item in sidenavright.menu">
+                <md-button
+                    layout-fill
+                    class="md-accent md-hue-1"
+                    ng-class="{'md-raised': sidenavright.isVisibleSubmenu(item)}"
+                    ng-click="sidenavright.toggleSubmenu(item)"
+                >
+                    {{::item}}
+                </md-button>
+                <div ng-show="sidenavright.isVisibleSubmenu(item)">
+                    <div ng-repeat="subitem in sidenavright.getSubmenu(item)">
+                        <md-input-container flex ng-repeat="param in sidenavright.getParams(item, subitem)">
+                            <label>{{ ::param }}</label>
+                            <input ng-if="param.indexOf('.opts') < 0" ng-model="database[param]">
+                            <md-select
+                                    ng-if="param.indexOf('.opts') > -1"
+                                    ng-model="database[param]"
+                            >
+                                <md-option ng-repeat="opt in sidenavright.opciones[item][subitem][$index]" value="{{opt.value}}">
+                                    {{ opt.text}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-button
+                            class="md-primary"
+                            ng-class="{'md-hue-3': sidenavright.isActiveSubmenu(item, subitem)}"
+                            ng-click="sidenavright.openRoute(item, subitem)"
+                        >
+                            Consultar "{{::subitem}}"
+                        </md-button>
+                    </div>
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+            </div>
+        </div>
+    </md-content>
+</md-sidenav>

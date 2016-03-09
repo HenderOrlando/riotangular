@@ -1,0 +1,31 @@
+
+<md-toolbar
+    md-scroll-shrink
+>
+    <div class="md-toolbar-tools">
+        <md-button
+            ng-click="main.toggleSideNavLeft()"
+            class="md-accent"
+            hide-gt-md
+        >
+            Menu
+        </md-button>
+        <h2>
+            <span>Toolbar with Icon Buttons</span>
+        </h2>
+        <span flex></span>
+        <md-button ng-click="main.toggleSideNavRight()" class="md-accent">
+            Configurar
+        </md-button>
+    </div>
+</md-toolbar>
+<md-content flex layout-padding>
+    <div layout="column" layout-fill layout-align="top center">
+        <p>
+            The left sidenav will 'lock open' on a medium (>=960px wide) device.
+        </p>
+        <p>
+            The right sidenav will focus on a specific child element.
+        </p>
+    </div>
+</md-content>

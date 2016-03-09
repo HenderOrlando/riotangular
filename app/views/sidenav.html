@@ -1,0 +1,39 @@
+
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-toolbar class="md-accent md-hue-1">
+        <div class="md-toolbar-tools" layout-row>
+            <md-button
+                ng-click="sidenavright.close()"
+                class="md-primary md-raised"
+                hide-gt-md>
+                Cerrar
+            </md-button>
+            <h1 style="text-align: right" flex>Menu</h1>
+        </div>
+    </md-toolbar>
+    <md-content>
+        <div layout="column">
+            <div ng-repeat="item in sidenav.menu">
+                <md-button
+                    layout-fill
+                    class="md-accent md-hue-1"
+                    ng-class="{'md-raised': sidenav.isVisibleSubmenu(item)}"
+                    ng-click="sidenav.toggleSubmenu(item)"
+                >
+                    {{::item}}
+                </md-button>
+                <div ng-show="sidenav.isVisibleSubmenu(item)">
+                    <md-button
+                        ng-repeat="subitem in sidenav.getSubmenu(item)"
+                        class="md-primary"
+                        ng-class="{'md-hue-3': sidenav.isActiveSubmenu(item, subitem)}"
+                        ng-click="sidenav.openRoute(item, subitem)"
+                    >
+                        {{::subitem}}
+                    </md-button>
+                </div>
+                <md-divider ng-if="!$last"></md-divider>
+            </div>
+        </div>
+    </md-content>
+</md-sidenav>
