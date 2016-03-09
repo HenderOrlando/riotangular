@@ -79,7 +79,7 @@ angular.module('riotangularApp')
                 keys = Object.keys(obj),
                 filter = false
             ;
-            if(vm.query.length > 3){
+            //if(vm.query.length > 3){
                 for(var i = 0; i < keys.length; i++){
                     if(angular.isString(obj[keys[i]])){
                         filter = filter || obj[keys[i]].toLowerCase().indexOf(vm.query.toLowerCase()) > -1;
@@ -88,9 +88,9 @@ angular.module('riotangularApp')
                         break;
                     }
                 }
-            }else{
+            /*}else{
                 filter = true;
-            }
+            }*/
             return filter;
         }
     });
